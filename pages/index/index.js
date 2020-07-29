@@ -1,0 +1,93 @@
+//index.js
+//获取应用实例
+const app = getApp()
+let kefupara = {};
+Page({
+  data: {
+    motto: 'Hello World',
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
+  },
+  //事件处理函数
+  bindViewTap: function() {
+    wx.navigateTo({
+      url: '../logs/logs'
+    })
+  },
+ 
+  onLoad: function () {
+    
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+
+      })
+      setUser(this,app.globalData.userInfo)
+    } else if (this.data.canIUse){
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+       setUser(this,res.userInfo)
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+          setUser(this,res.userInfo)
+        }
+      })
+    }
+  },
+  getUserInfo: function(e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+    setUser(this,e.detail.userInfo)
+  }
+}
+
+)
+/**
+ * 获取并设置用户信息
+ * @param {*} thisData 
+ * @param {*} userinfo 
+ */
+function setUser(thisData,userinfo){
+console.log(userinfo)
+//用户昵称
+if(userinfo.nickName)kefupara.nickName = userinfo.nickName
+//用户头像
+if(userinfo.avatarUrl)kefupara.avatarUrl = userinfo.avatarUrl
+//性别
+if(userinfo.gender)kefupara.gender = userinfo.gender
+//城市
+if(userinfo.city)kefupara.city = userinfo.city
+//省份
+if(userinfo.province)kefupara.province = userinfo.province
+//国家
+if(userinfo.country)kefupara.country = userinfo.country
+//语言
+if(userinfo.language)kefupara.language = userinfo.language
+//因为传参需要字符串类型，json转换成string
+kefupara = JSON.stringify(kefupara);
+console.log(kefupara);
+//对外赋值，button调用（wxmlw文件中调用）
+thisData.setData({
+  kefupara: kefupara,
+  a:"联系客服1"
+})
+}
