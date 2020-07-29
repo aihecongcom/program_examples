@@ -24,6 +24,7 @@ Page({
         hasUserInfo: true
 
       })
+      //小程序获取到微信信息后去设置顾客资料
       setUser(this,app.globalData.userInfo)
     } else if (this.data.canIUse){
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -33,6 +34,7 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
+        //小程序获取到微信信息后去设置顾客资料
        setUser(this,res.userInfo)
       }
     } else {
@@ -44,6 +46,7 @@ Page({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
+          // 在没有 open-type=getUserInfo 版本的兼容处理
           setUser(this,res.userInfo)
         }
       })
@@ -56,6 +59,7 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+    //小程序获取到微信信息后去设置顾客资料
     setUser(this,e.detail.userInfo)
   }
 }
@@ -88,6 +92,6 @@ console.log(kefupara);
 //对外赋值，button调用（wxmlw文件中调用）
 thisData.setData({
   kefupara: kefupara,
-  a:"联系客服1"
+  btnText:"联系客服1"
 })
 }

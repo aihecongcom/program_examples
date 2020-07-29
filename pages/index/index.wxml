@@ -9,6 +9,6 @@
   </view>
   <view class="usermotto">
 
-      <button open-type="contact" session-from="{{kefupara}}" type="primary">{{a}}</button>
+      <button open-type="contact" session-from="{{kefupara}}" type="primary">{{btnText}}</button>
   </view>
 </view>
