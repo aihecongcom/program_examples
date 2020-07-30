@@ -7,7 +7,9 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    btnText:'请先点上方按钮获取头像昵称',
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    condition : false
   },
   //事件处理函数
   bindViewTap: function() {
@@ -72,6 +74,8 @@ Page({
  */
 function setUser(thisData,userinfo){
 console.log(userinfo)
+//该参数可设置指定客服接待对话(客服ID在 设置-->成员管理-->点击成员-->客服ID)
+kefupara.assignService = "客服ID"
 //用户昵称
 if(userinfo.nickName)kefupara.nickName = userinfo.nickName
 //用户头像
@@ -86,12 +90,18 @@ if(userinfo.province)kefupara.province = userinfo.province
 if(userinfo.country)kefupara.country = userinfo.country
 //语言
 if(userinfo.language)kefupara.language = userinfo.language
+
+//可以自定义参数
+kefupara['会员等级'] = "vip1"
+kefupara.vip = "vip2"
+//...可以填加更多的自定义字段信息
 //因为传参需要字符串类型，json转换成string
 kefupara = JSON.stringify(kefupara);
 console.log(kefupara);
 //对外赋值，button调用（wxmlw文件中调用）
 thisData.setData({
   kefupara: kefupara,
-  btnText:"联系客服1"
+  btnText:"联系客服",
+  condition: true
 })
 }
