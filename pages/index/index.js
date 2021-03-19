@@ -78,8 +78,8 @@ console.log(userinfo)
 kefupara.assignService = "客服ID"
 //group客服组 service客服
 kefupara.assignType = "service" 
-//assignType为group则填写客服组ID, service 则传客服ID
-kefupara.idList = ["客服的ID","客服组ID"] 
+//assignType为group []则填写客服组名称, service []则传客服ID
+kefupara.idList = ["客服的ID","客服组名称"] 
 //用户昵称
 if(userinfo.nickName)kefupara.nickName = userinfo.nickName
 //用户头像
