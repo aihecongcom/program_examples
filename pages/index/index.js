@@ -76,6 +76,10 @@ function setUser(thisData,userinfo){
 console.log(userinfo)
 //该参数可设置指定客服接待对话(客服ID在 设置-->成员管理-->点击成员-->客服ID)
 kefupara.assignService = "客服ID"
+//group客服组 service客服
+kefupara.assignType = "service" 
+//assignType为group则填写客服组ID, service 则传客服ID
+kefupara.idList = ["客服的ID","客服组ID"] 
 //用户昵称
 if(userinfo.nickName)kefupara.nickName = userinfo.nickName
 //用户头像
